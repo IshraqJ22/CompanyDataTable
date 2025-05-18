@@ -41,7 +41,6 @@ table.dataTable tbody td {
   border-radius: 4px;
   padding: 8px 12px;
   margin: 5px;
-  margin-left: 10px;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
