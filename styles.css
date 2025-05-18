@@ -56,6 +56,10 @@ table.dataTable tbody td {
   padding: 5px;
 }
 
+.dataTables_wrapper .dataTables_filter {
+  margin-bottom: 15px; /* Add spacing between the search bar and the table */
+}
+
 .dataTables_wrapper .dataTables_length {
   margin-bottom: 20px;
 }

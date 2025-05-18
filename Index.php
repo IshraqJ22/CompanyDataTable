@@ -64,10 +64,9 @@
     <script>
         $(document).ready(function() {
             $('#companyData').DataTable({
-                dom: '<"top"l>rt<"bottom"ip><"clear">',
+                dom: '<"top"lf>rt<"bottom"ip><"clear">', // Added the length menu ("l") to the DOM structure
                 responsive: true
             });
-
 
             $(document).on('click', '.edit-btn', function() {
                 const rowData = JSON.parse($(this).attr('data-row'));
