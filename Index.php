@@ -17,7 +17,7 @@
     $query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'employee_data'";
     $columns = $pdo->query($query)->fetchAll(PDO::FETCH_COLUMN);
     ?>
-
+    <h1>Company Data</h1>
     <table id="companyData" class="display" style="width:100%">
         <thead>
             <tr>
