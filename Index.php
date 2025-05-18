@@ -12,41 +12,23 @@
 </head>
 
 <body>
+    <?php
+    include 'db_config.php';
+    $query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'employee_data'";
+    $columns = $pdo->query($query)->fetchAll(PDO::FETCH_COLUMN);
+    ?>
+
     <table id="companyData" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>EmpID</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>StartDate</th>
-                <th>ExitDate</th>
-                <th>Title</th>
-                <th>Supervisor</th>
-                <th>ADEmail</th>
-                <th>BusinessUnit</th>
-                <th>EmployeeStatus</th>
-                <th>EmployeeType</th>
-                <th>PayZone</th>
-                <th>EmployeeClassificationType</th>
-                <th>TerminationType</th>
-                <th>TerminationDescription</th>
-                <th>DepartmentType</th>
-                <th>Division</th>
-                <th>DOB</th>
-                <th>State</th>
-                <th>JobFunctionDescription</th>
-                <th>GenderCode</th>
-                <th>LocationCode</th>
-                <th>RaceDesc</th>
-                <th>MaritalDesc</th>
-                <th>PerformanceScore</th>
-                <th>CurrentEmployeeRating</th>
+                <?php foreach ($columns as $column): ?>
+                    <th><?php echo htmlspecialchars($column); ?></th>
+                <?php endforeach; ?>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            include 'db_config.php';
             $query = "SELECT * FROM employee_data";
             $result = $pdo->query($query);
 
@@ -82,7 +64,8 @@
     <script>
         $(document).ready(function() {
             $('#companyData').DataTable({
-                dom: '<"top"l>rt<"bottom"ip><"clear">'
+                dom: '<"top"l>rt<"bottom"ip><"clear">',
+                responsive: true
             });
 
 

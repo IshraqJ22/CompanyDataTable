@@ -136,3 +136,21 @@ table.dataTable tbody td {
 .delete-btn:hover {
   background-color: #d32f2f;
 }
+
+@media (max-width: 768px) {
+  table.dataTable {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .modal-content {
+    width: 90%;
+    margin: auto;
+  }
+
+  .modal-content form input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
