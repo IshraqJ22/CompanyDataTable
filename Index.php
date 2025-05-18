@@ -64,7 +64,7 @@
     <script>
         $(document).ready(function() {
             $('#companyData').DataTable({
-                dom: '<"top"lf>rt<"bottom"ip><"clear">', // Added the length menu ("l") to the DOM structure
+                dom: '<"top"lf>rt<"bottom"ip><"clear">',
                 responsive: true
             });
 

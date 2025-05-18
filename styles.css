@@ -57,7 +57,7 @@ table.dataTable tbody td {
 }
 
 .dataTables_wrapper .dataTables_filter {
-  margin-bottom: 15px; /* Add spacing between the search bar and the table */
+  margin-bottom: 15px;
 }
 
 .dataTables_wrapper .dataTables_length {
