@@ -141,7 +141,7 @@ table.dataTable tbody td {
   background-color: #d32f2f;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   table.dataTable {
     display: block;
     overflow-x: auto;
