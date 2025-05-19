@@ -110,13 +110,15 @@
 
             $('#confirmDelete').on('click', function() {
                 if (deleteId) {
-                    $.post('delete.php', {
-                        id: deleteId
-                    }, function(response) {
-                        $('#messageText').text(response);
-                        $('#messageModal').css('display', 'flex');
-                        location.reload();
-                    });
+                    $.post('delete.php', { id: deleteId })
+                        .done(function(response) {
+                            $('#messageText').text(response);
+                            $('#messageModal').css('display', 'flex');
+                            location.reload(); // Reload only after the request completes
+                        })
+                        .fail(function() {
+                            alert('Failed to delete the record. Please try again.');
+                        });
                 }
                 $('#deleteModal').css('display', 'none');
             });
@@ -134,10 +136,14 @@
 
                 const formData = $(this).serialize();
 
-                $.post('update.php', formData, function(response) {
-                    alert(response);
-                    location.reload();
-                });
+                $.post('update.php', formData)
+                    .done(function(response) {
+                        alert(response);
+                        location.reload(); // Reload only after the request completes
+                    })
+                    .fail(function() {
+                        alert('Failed to update the record. Please try again.');
+                    });
             });
         });
     </script>
