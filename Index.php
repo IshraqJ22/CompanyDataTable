@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
+
     <div id="deleteModal" class="modal" style="display:none;">
         <div class="modal-content">
             <h2>Confirm Deletion</h2>
@@ -71,7 +71,7 @@
         </div>
     </div>
 
-    <!-- Message Modal -->
+
     <div id="messageModal" class="modal" style="display:none;">
         <div class="modal-content">
             <h2 id="messageText"></h2>
@@ -110,7 +110,9 @@
 
             $('#confirmDelete').on('click', function() {
                 if (deleteId) {
-                    $.post('delete.php', { id: deleteId }, function(response) {
+                    $.post('delete.php', {
+                        id: deleteId
+                    }, function(response) {
                         $('#messageText').text(response);
                         $('#messageModal').css('display', 'flex');
                         location.reload();
