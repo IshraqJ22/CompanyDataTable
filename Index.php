@@ -61,6 +61,24 @@
         </div>
     </div>
 
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2>Confirm Deletion</h2>
+            <p>Are you sure you want to delete this record?</p>
+            <button id="confirmDelete">Yes</button>
+            <button id="cancelDelete">No</button>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div id="messageModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <h2 id="messageText"></h2>
+            <button id="closeMessageModal">Close</button>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function() {
             $('#companyData').DataTable({
@@ -83,20 +101,31 @@
                 $('#editModal').css('display', 'none');
             });
 
-            // Handle Delete Button Click
-            $(document).on('click', '.delete-btn', function() {
-                const id = $(this).attr('data-id');
-                if (confirm('Are you sure you want to delete this record?')) {
+            let deleteId = null;
 
-                    $.post('delete.php', {
-                        id: id
-                    }, function(response) {
-                        alert(response);
+            $(document).on('click', '.delete-btn', function() {
+                deleteId = $(this).attr('data-id');
+                $('#deleteModal').css('display', 'flex');
+            });
+
+            $('#confirmDelete').on('click', function() {
+                if (deleteId) {
+                    $.post('delete.php', { id: deleteId }, function(response) {
+                        $('#messageText').text(response);
+                        $('#messageModal').css('display', 'flex');
                         location.reload();
                     });
                 }
+                $('#deleteModal').css('display', 'none');
             });
 
+            $('#cancelDelete').on('click', function() {
+                $('#deleteModal').css('display', 'none');
+            });
+
+            $('#closeMessageModal').on('click', function() {
+                $('#messageModal').css('display', 'none');
+            });
 
             $('#editForm').on('submit', function(e) {
                 e.preventDefault();
