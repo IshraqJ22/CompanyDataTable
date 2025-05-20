@@ -110,7 +110,8 @@
         $(document).ready(function() {
             $('#companyData').DataTable({
                 dom: '<"top"lf>rt<"bottom"ip><"clear">',
-                responsive: true
+                responsive: true,
+                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]] // Add "Show all" option
             });
 
             $(document).on('click', '.edit-btn', function() {
