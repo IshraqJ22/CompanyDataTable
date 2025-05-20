@@ -44,6 +44,7 @@
                     echo "<td>";
                     echo "<button class='edit-btn' data-row='" . htmlspecialchars(json_encode($row)) . "'>Edit</button> ";
                     echo "<button class='delete-btn' data-id='" . htmlspecialchars($row['EmpID']) . "'>Delete</button>";
+                    echo "<button class='add-btn btn btn-success btn-sm'>Add</button>";
                     echo "</td>";
                     echo "</tr>";
                 }
@@ -79,6 +80,29 @@
         <div class="modal-content">
             <h2 id="messageText"></h2>
             <button id="closeMessageModal">Close</button>
+        </div>
+    </div>
+
+    <!-- Add Modal -->
+    <div id="addModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" id="closeAddModal">&times;</span>
+            <h2>Add New Data</h2>
+            <form id="addForm">
+                <label for="EmpID">EmpID</label>
+                <input type="text" name="EmpID" id="EmpID" required><br>
+                <label for="FirstName">First Name</label>
+                <input type="text" name="FirstName" id="FirstName" required><br>
+                <label for="LastName">Last Name</label>
+                <input type="text" name="LastName" id="LastName" required><br>
+                <label for="Title">Title</label>
+                <input type="text" name="Title" id="Title" required><br>
+                <label for="ADEmail">ADEmail</label>
+                <input type="email" name="ADEmail" id="ADEmail" required><br>
+                <label for="DOB">DOB</label>
+                <input type="date" name="DOB" id="DOB" required><br>
+                <button type="submit">Add Record</button>
+            </form>
         </div>
     </div>
 
@@ -148,6 +172,36 @@
                         $('#messageText').text('Failed to update the record. Please try again.');
                         $('#messageModal').css('display', 'flex');
                     });
+            });
+
+            // Open Add Modal
+            $(document).on('click', '.add-btn', function() {
+                $('#addModal').css('display', 'flex');
+            });
+
+            // Close Add Modal
+            $('#closeAddModal').on('click', function() {
+                $('#addModal').css('display', 'none');
+            });
+
+            // Handle Add Form Submission
+            $('#addForm').on('submit', function(e) {
+                e.preventDefault();
+
+                const formData = $(this).serialize();
+
+                $.post('add.php', formData)
+                    .done(function(response) {
+                        $('#messageText').text(response);
+                        $('#messageModal').css('display', 'flex');
+                        location.reload(); // Reload only after the request completes
+                    })
+                    .fail(function() {
+                        $('#messageText').text('Failed to add the record. Please try again.');
+                        $('#messageModal').css('display', 'flex');
+                    });
+
+                $('#addModal').css('display', 'none');
             });
         });
     </script>
