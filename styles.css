@@ -42,6 +42,10 @@ table.dataTable tbody td {
   padding: 8px 12px;
   margin: 5px;
 }
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background-color: #0000ff;
+  color: #ffffff !important;
+}
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
   background-color: #555;
@@ -77,6 +81,11 @@ table.dataTable tbody td {
   padding: 5px;
 }
 
+.dataTables_wrapper .dataTables_info {
+  color: #FFFFFF;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
 
 .modal {
   position: fixed;
