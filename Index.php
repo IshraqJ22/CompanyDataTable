@@ -175,17 +175,17 @@
                     });
             });
 
-            // Open Add Modal
+            
             $(document).on('click', '.add-btn', function() {
                 $('#addModal').css('display', 'flex');
             });
 
-            // Close Add Modal
+            
             $('#closeAddModal').on('click', function() {
                 $('#addModal').css('display', 'none');
             });
 
-            // Handle Add Form Submission
+            
             $('#addForm').on('submit', function(e) {
                 e.preventDefault();
 
@@ -195,7 +195,7 @@
                     .done(function(response) {
                         $('#messageText').text(response);
                         $('#messageModal').css('display', 'flex');
-                        location.reload(); // Reload only after the request completes
+                        location.reload(); 
                     })
                     .fail(function() {
                         $('#messageText').text('Failed to add the record. Please try again.');
