@@ -83,7 +83,7 @@
         </div>
     </div>
 
-    <!-- Add Modal -->
+   
     <div id="addModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span class="close-btn" id="closeAddModal">&times;</span>
