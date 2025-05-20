@@ -83,7 +83,7 @@
         </div>
     </div>
 
-   
+
     <div id="addModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span class="close-btn" id="closeAddModal">&times;</span>
@@ -111,7 +111,10 @@
             $('#companyData').DataTable({
                 dom: '<"top"lf>rt<"bottom"ip><"clear">',
                 responsive: true,
-                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]] // Add "Show all" option
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ] // Add "Show all" option
             });
 
             $(document).on('click', '.edit-btn', function() {
@@ -138,7 +141,9 @@
 
             $('#confirmDelete').on('click', function() {
                 if (deleteId) {
-                    $.post('delete.php', { id: deleteId })
+                    $.post('delete.php', {
+                            id: deleteId
+                        })
                         .done(function(response) {
                             $('#messageText').text(response);
                             $('#messageModal').css('display', 'flex');
@@ -175,17 +180,17 @@
                     });
             });
 
-            
+
             $(document).on('click', '.add-btn', function() {
                 $('#addModal').css('display', 'flex');
             });
 
-            
+
             $('#closeAddModal').on('click', function() {
                 $('#addModal').css('display', 'none');
             });
 
-            
+
             $('#addForm').on('submit', function(e) {
                 e.preventDefault();
 
@@ -195,7 +200,7 @@
                     .done(function(response) {
                         $('#messageText').text(response);
                         $('#messageModal').css('display', 'flex');
-                        location.reload(); 
+                        location.reload();
                     })
                     .fail(function() {
                         $('#messageText').text('Failed to add the record. Please try again.');
