@@ -18,18 +18,21 @@
     $columns = $pdo->query($query)->fetchAll(PDO::FETCH_COLUMN);
     ?>
     <h1>Company Data</h1>
-    <table id="companyData" class="display" style="width:100%">
+    <table id="companyData" class="display table-responsive" style="width:100%">
         <thead>
             <tr>
-                <?php foreach ($columns as $column): ?>
-                    <th><?php echo htmlspecialchars($column); ?></th>
-                <?php endforeach; ?>
+                <th>EmpID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Title</th>
+                <th>ADEmail</th>
+                <th>DOB</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM employee_data";
+            $query = "SELECT EmpID, FirstName, LastName, Title, ADEmail, DOB FROM employee_data";
             $result = $pdo->query($query);
 
             if ($result->rowCount() > 0) {
@@ -138,11 +141,12 @@
 
                 $.post('update.php', formData)
                     .done(function(response) {
-                        alert(response);
-                        location.reload(); // Reload only after the request completes
+                        $('#messageText').text(response);
+                        $('#messageModal').css('display', 'flex');
                     })
                     .fail(function() {
-                        alert('Failed to update the record. Please try again.');
+                        $('#messageText').text('Failed to update the record. Please try again.');
+                        $('#messageModal').css('display', 'flex');
                     });
             });
         });

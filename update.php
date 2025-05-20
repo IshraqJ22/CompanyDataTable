@@ -21,9 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $stmt->bindValue(":EmpID", $empID);
 
-    if ($stmt->execute()) {
-        echo "Record updated successfully.";
-    } else {
-        echo "Failed to update record.";
+    try {
+        if ($stmt->execute()) {
+            echo "Record updated successfully.";
+        } else {
+            echo "Failed to update record.";
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
 }
